@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PessoaResource {
     
     @GetMapping
-    public List<Pessoa> listar() {
+    public List<Pessoa> listPessoas() {
         
         Pessoa p1 = new Pessoa();
         Pessoa p2 = new Pessoa();

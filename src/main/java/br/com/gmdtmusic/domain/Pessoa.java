@@ -8,15 +8,23 @@ package br.com.gmdtmusic.domain;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import javax.persistence.*;
 
 /**
  *
  * @author luiz
  */
+@Entity
 public class Pessoa implements Serializable{
  
     private static final long serialVersionUID = 1L;
     
+    //Database PostgreSQL
+    //@SequenceGenerator(name = "SEQUENCE_IDPESSOA", sequenceName = "idpessoa_sequence", initialValue = 1, allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDPESSOA")
+    //Database H2 and MySql
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String sobrenome;
