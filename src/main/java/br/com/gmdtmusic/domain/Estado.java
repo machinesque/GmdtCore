@@ -5,8 +5,7 @@
  */
 package br.com.gmdtmusic.domain;
 
-import java.io.Serializable;
-import java.time.OffsetDateTime;
+import br.com.gmdtmusic.domain.enums.EnumRegiao;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -15,27 +14,23 @@ import javax.persistence.*;
  * @author luiz
  */
 @Entity
-public class Pessoa implements Serializable{
- 
-    private static final long serialVersionUID = 1L;
+public class Estado {
     
     //Database PostgreSQL
-    //@SequenceGenerator(name = "SEQUENCE_IDPESSOA", sequenceName = "idpessoa_sequence", initialValue = 1, allocationSize = 1)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDPESSOA")
+    //@SequenceGenerator(name = "SEQUENCE_IDESTADO", sequenceName = "idestado_sequence", initialValue = 1, allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDESTADO")
     //Database H2 and MySql
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     
     private String nome;
     
-    private String sobrenome;
+    private Integer regiao;
     
-    private String sexo; //Mudar para EnumTipoSexo
-    
-    private OffsetDateTime dataNascimento;
+    private Pais pais;
 
-    public Pessoa() {
+    public Estado() {
     }
 
     public Long getId() {
@@ -54,34 +49,26 @@ public class Pessoa implements Serializable{
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public EnumRegiao getRegiao() {
+        return EnumRegiao.toEnum(regiao);
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
+    public void setRegiao(EnumRegiao regiao) {
+        this.regiao = regiao.getCodigo();
     }
 
-    public String getSexo() {
-        return sexo;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public OffsetDateTime getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(OffsetDateTime dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -96,11 +83,16 @@ public class Pessoa implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final Estado other = (Estado) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Estado{" + "id=" + id + ", nome=" + nome + '}';
+    }
+
 }

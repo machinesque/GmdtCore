@@ -5,8 +5,6 @@
  */
 package br.com.gmdtmusic.domain;
 
-import java.io.Serializable;
-import java.time.OffsetDateTime;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -15,27 +13,19 @@ import javax.persistence.*;
  * @author luiz
  */
 @Entity
-public class Pessoa implements Serializable{
- 
-    private static final long serialVersionUID = 1L;
+public class Pais {
     
     //Database PostgreSQL
-    //@SequenceGenerator(name = "SEQUENCE_IDPESSOA", sequenceName = "idpessoa_sequence", initialValue = 1, allocationSize = 1)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDPESSOA")
+    //@SequenceGenerator(name = "SEQUENCE_IDPAIS", sequenceName = "idpais_sequence", initialValue = 1, allocationSize = 1)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDPAIS")
     //Database H2 and MySql
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
     
     private String nome;
-    
-    private String sobrenome;
-    
-    private String sexo; //Mudar para EnumTipoSexo
-    
-    private OffsetDateTime dataNascimento;
 
-    public Pessoa() {
+    public Pais() {
     }
 
     public Long getId() {
@@ -54,34 +44,10 @@ public class Pessoa implements Serializable{
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public OffsetDateTime getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(OffsetDateTime dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -96,11 +62,16 @@ public class Pessoa implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final Pais other = (Pais) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Pais{" + "id=" + id + ", nome=" + nome + '}';
     }
     
 }
