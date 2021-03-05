@@ -7,6 +7,8 @@ package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumRegiao;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -31,7 +33,12 @@ public class Bairro implements Serializable {
     
     private Integer regiao; 
     
+    @ManyToOne
+    @JoinColumn(name="cidade_id")
     private Cidade cidade;
+    
+    @OneToMany(mappedBy = "bairro")
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Bairro() {
     }
@@ -66,6 +73,14 @@ public class Bairro implements Serializable {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     @Override

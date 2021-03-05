@@ -31,7 +31,13 @@ public class Endereco implements Serializable {
     
     private String numero;
     
+    @ManyToOne
+    @JoinColumn(name="bairro_id")
     private Bairro bairro;
+    
+    @ManyToOne
+    @JoinColumn(name="pessoa_id")
+    private Pessoa pessoa;
     
     private String cep;
     
@@ -72,6 +78,14 @@ public class Endereco implements Serializable {
 
     public void setBairro(Bairro bairro) {
         this.bairro = bairro;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     public String getCep() {

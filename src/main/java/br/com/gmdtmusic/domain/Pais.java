@@ -6,6 +6,8 @@
 package br.com.gmdtmusic.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -27,6 +29,9 @@ public class Pais implements Serializable {
     private Long id;
     
     private String nome;
+    
+    @OneToMany(mappedBy = "pais")
+    private List<Estado> estados = new ArrayList<>();
 
     public Pais() {
     }
@@ -45,6 +50,14 @@ public class Pais implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
     }
 
     @Override

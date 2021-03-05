@@ -7,6 +7,8 @@ package br.com.gmdtmusic.domain;
 
 import java.io.Serializable;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -34,6 +36,9 @@ public class Pessoa implements Serializable{
     private String sexo; //Mudar para EnumTipoSexo
     
     private OffsetDateTime dataNascimento;
+    
+    @OneToMany(mappedBy = "pessoa")
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Pessoa() {
     }
@@ -76,6 +81,14 @@ public class Pessoa implements Serializable{
 
     public void setDataNascimento(OffsetDateTime dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     @Override

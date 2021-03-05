@@ -7,6 +7,8 @@ package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumRegiao;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -31,7 +33,12 @@ public class Estado implements Serializable {
     
     private Integer regiao;
     
+    @ManyToOne
+    @JoinColumn(name="pais_id")
     private Pais pais;
+    
+    @OneToMany(mappedBy = "estado")
+    private List<Cidade> cidades = new ArrayList<>();
 
     public Estado() {
     }
@@ -66,6 +73,14 @@ public class Estado implements Serializable {
 
     public void setPais(Pais pais) {
         this.pais = pais;
+    }
+
+    public List<Cidade> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(List<Cidade> cidades) {
+        this.cidades = cidades;
     }
 
     @Override
