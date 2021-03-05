@@ -6,6 +6,7 @@
 package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumRegiao;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -14,7 +15,9 @@ import javax.persistence.*;
  * @author luiz
  */
 @Entity
-public class Cidade {
+public class Cidade implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     
     //Database PostgreSQL
     //@SequenceGenerator(name = "SEQUENCE_IDCIDADE", sequenceName = "idcidade_sequence", initialValue = 1, allocationSize = 1)

@@ -5,6 +5,7 @@
  */
 package br.com.gmdtmusic.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -13,7 +14,9 @@ import javax.persistence.*;
  * @author luiz
  */
 @Entity
-public class Pais {
+public class Pais implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
     
     //Database PostgreSQL
     //@SequenceGenerator(name = "SEQUENCE_IDPAIS", sequenceName = "idpais_sequence", initialValue = 1, allocationSize = 1)
