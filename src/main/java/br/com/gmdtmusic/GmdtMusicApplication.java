@@ -1,6 +1,7 @@
 package br.com.gmdtmusic;
 
 import br.com.gmdtmusic.domain.Pessoa;
+import br.com.gmdtmusic.domain.enums.EnumTipoSexo;
 import br.com.gmdtmusic.repositories.PessoaRepository;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -30,13 +31,13 @@ public class GmdtMusicApplication implements CommandLineRunner {
         p1.setDataNascimento(OffsetDateTime.of(1987, 5, 26, 0, 0, 0, 0, ZoneOffset.UTC));
         p1.setNome("Luiz Antonio");
         p1.setSobrenome("Machinesque");
-        p1.setSexo("Masculino");
+        p1.setSexo(EnumTipoSexo.MASCULINO);
         
         p2.setId(2L);
         p2.setDataNascimento(OffsetDateTime.of(1981, 9, 5, 0, 0, 0, 0, ZoneOffset.UTC));
         p2.setNome("Simone Pirrotti Ferreira");
         p2.setSobrenome("Machinesque");
-        p2.setSexo("Feminino");
+        p2.setSexo(EnumTipoSexo.FEMININO);
         
         pessoaRepository.saveAll(Arrays.asList(p1, p2));
         

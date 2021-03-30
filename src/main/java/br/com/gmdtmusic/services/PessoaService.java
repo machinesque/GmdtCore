@@ -6,8 +6,8 @@
 package br.com.gmdtmusic.services;
 
 import br.com.gmdtmusic.domain.Pessoa;
-import br.com.gmdtmusic.domain.exceptions.EntidadeNaoEncontradaException;
 import br.com.gmdtmusic.repositories.PessoaRepository;
+import br.com.gmdtmusic.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class PessoaService {
     
     public Pessoa findById(Long id) {
         return pessoaRepository.findById(id)
-		.orElseThrow(() -> new EntidadeNaoEncontradaException("Pessoa não encontrada!"));
+		.orElseThrow(() -> new ObjectNotFoundException("Pessoa não encontrada!"));
         
 //        Optional<Pessoa> objetoPessoa = pessoaRepository.findById(id);
 //        return objetoPessoa.orElse(null);

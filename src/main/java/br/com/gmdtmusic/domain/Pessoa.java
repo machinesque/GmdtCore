@@ -5,6 +5,7 @@
  */
 package br.com.gmdtmusic.domain;
 
+import br.com.gmdtmusic.domain.enums.EnumTipoSexo;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class Pessoa implements Serializable{
     
     private String sobrenome;
     
-    private String sexo; //Mudar para EnumTipoSexo
+    private Integer sexo; //Mudar para EnumTipoSexo
     
     private OffsetDateTime dataNascimento;
     
@@ -67,12 +68,12 @@ public class Pessoa implements Serializable{
         this.sobrenome = sobrenome;
     }
 
-    public String getSexo() {
-        return sexo;
+    public EnumTipoSexo getSexo() {
+        return EnumTipoSexo.toEnum(sexo);
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSexo(EnumTipoSexo sexo) {
+        this.sexo = sexo.getCodigo();
     }
 
     public OffsetDateTime getDataNascimento() {

@@ -10,13 +10,13 @@ package br.com.gmdtmusic.domain.enums;
  * @author luizam
  */
 public enum EnumTipoSexo {
-    FEMININO(1, 'F'), 
-    MASCULINO(2, 'M');
+    FEMININO(1, "Feminino"), 
+    MASCULINO(2, "Masculino");
     
     private int codigo;
-    private char desc;
+    private String desc;
 
-    private EnumTipoSexo(int codigo, char desc) {
+    private EnumTipoSexo(int codigo, String desc) {
         this.codigo = codigo;
         this.desc = desc;
     }
@@ -25,7 +25,7 @@ public enum EnumTipoSexo {
         return codigo;
     }
     
-    public char getDesc() {
+    public String getDesc() {
         return desc;
     }
 
