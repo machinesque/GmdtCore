@@ -6,6 +6,8 @@
 package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumRegiao;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +35,12 @@ public class Cidade implements Serializable {
     
     private Integer regiao; //enum
     
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="estado_id")
     private Estado estado;
     
+    @JsonBackReference
     @OneToMany(mappedBy = "cidade")
     private List<Bairro> bairros = new ArrayList<>();
 

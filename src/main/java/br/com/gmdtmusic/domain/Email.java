@@ -5,11 +5,9 @@
  */
 package br.com.gmdtmusic.domain;
 
+import br.com.gmdtmusic.domain.enums.EnumTipoEmail;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 
@@ -18,25 +16,24 @@ import javax.persistence.*;
  * @author luiz
  */
 @Entity
-public class Pais implements Serializable {
+public class Email implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
-    //Database PostgreSQL
-    //@SequenceGenerator(name = "SEQUENCE_IDPAIS", sequenceName = "idpais_sequence", initialValue = 1, allocationSize = 1)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_IDPAIS")
-    //Database H2 and MySql
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     
-    private String nome;
+    private String enderecoEmail;
+    
+    private Integer tipoEmail;
     
     @JsonBackReference
-    @OneToMany(mappedBy = "pais")
-    private List<Estado> estados = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="pessoa_id")
+    private Pessoa pessoa;
 
-    public Pais() {
+    public Email() {
     }
 
     public Long getId() {
@@ -47,26 +44,34 @@ public class Pais implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEnderecoEmail() {
+        return enderecoEmail;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEnderecoEmail(String enderecoEmail) {
+        this.enderecoEmail = enderecoEmail;
     }
 
-    public List<Estado> getEstados() {
-        return estados;
+    public EnumTipoEmail getTipoEmail() {
+        return EnumTipoEmail.toEnum(tipoEmail);
     }
 
-    public void setEstados(List<Estado> estados) {
-        this.estados = estados;
+    public void setTipoEmail(EnumTipoEmail tipoEmail) {
+        this.tipoEmail = tipoEmail.getCodigo();
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -81,16 +86,11 @@ public class Pais implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pais other = (Pais) obj;
+        final Email other = (Email) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Pais{" + "id=" + id + ", nome=" + nome + '}';
     }
     
 }

@@ -6,6 +6,7 @@
 package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumTipoSexo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -38,8 +39,13 @@ public class Pessoa implements Serializable{
     
     private OffsetDateTime dataNascimento;
     
+    @JsonManagedReference
     @OneToMany(mappedBy = "pessoa")
     private List<Endereco> enderecos = new ArrayList<>();
+    
+    @JsonManagedReference
+    @OneToMany(mappedBy = "pessoa")
+    private List<Email> emails = new ArrayList<>();
 
     public Pessoa() {
     }
@@ -90,6 +96,14 @@ public class Pessoa implements Serializable{
 
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public List<Email> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<Email> emails) {
+        this.emails = emails;
     }
 
     @Override

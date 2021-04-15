@@ -6,6 +6,8 @@
 package br.com.gmdtmusic.domain;
 
 import br.com.gmdtmusic.domain.enums.EnumTipoEndereco;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
@@ -31,10 +33,12 @@ public class Endereco implements Serializable {
     
     private String numero;
     
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name="bairro_id")
     private Bairro bairro;
     
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="pessoa_id")
     private Pessoa pessoa;
