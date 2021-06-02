@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.gmdtmusic</groupId>
-    <artifactId>GmdtMusic</artifactId>
+    <artifactId>GmdtCore</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>GmdtMusic</name>
+    <name>GmdtCore</name>
     <description>Music Project</description>
 
     <properties>
